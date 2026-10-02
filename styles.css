@@ -1,0 +1,149 @@
+/* =====================================================
+   MoneyTrack · estilos
+   ===================================================== */
+
+/* ----- Variables de diseño (paleta y medidas) ----- */
+:root {
+  --fondo: #08171a;
+  --panel: rgba(255, 255, 255, 0.06);
+  --borde: rgba(255, 255, 255, 0.12);
+  --texto: #e8f1ef;
+  --suave: #93aaa6;
+  --acento: #3ddbb0;
+  --positivo: #4ade80;
+  --negativo: #ff6b6b;
+  --radio: 14px;
+}
+
+* { box-sizing: border-box; }
+
+/* ----- Base de la página ----- */
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: "DM Sans", system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+/* ----- Lienzo de partículas: ocupa toda la pantalla y queda detrás ----- */
+#fondo {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+/* ----- Cabecera con el saldo ----- */
+.cabecera { text-align: center; margin-bottom: 2rem; }
+.titular { margin: 0; color: var(--suave); }
+.saldo {
+  margin: .2rem 0 .6rem;
+  font-size: clamp(2.8rem, 10vw, 4.5rem);
+  font-weight: 700;
+  color: var(--acento);
+}
+.resumen { margin: 0; color: var(--suave); }
+
+/* ----- Paneles con efecto cristal ----- */
+.columnas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 1.4rem;
+  backdrop-filter: blur(8px);
+}
+.panel h2 { margin: 0 0 1rem; font-size: 1.15rem; }
+
+/* ----- Formulario ----- */
+label { display: block; margin-bottom: .9rem; font-size: .9rem; color: var(--suave); }
+input, select {
+  display: block;
+  width: 100%;
+  margin-top: .3rem;
+  padding: .6rem .7rem;
+  font: inherit;
+  color: var(--texto);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+}
+select option { background: #0d2428; }
+input:focus, select:focus, button:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 1px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: .7rem;
+  font: inherit;
+  font-weight: 700;
+  color: #06201a;
+  background: var(--acento);
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button[type="submit"]:hover { filter: brightness(1.1); }
+
+.error { min-height: 1.4em; margin: 0 0 .5rem; color: var(--negativo); }
+
+/* ----- Estadísticas ----- */
+.panel p { margin: 0 0 .5rem; }
+.destacado { color: var(--acento); font-weight: 500; }
+#lista-categorias { list-style: none; margin: .8rem 0 0; padding: 0; }
+#lista-categorias li {
+  display: flex;
+  justify-content: space-between;
+  padding: .4rem 0;
+  border-bottom: 1px solid var(--borde);
+}
+
+/* ----- Tabla ----- */
+.barra-tabla {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: .75rem;
+}
+.barra-tabla h2 { margin: 0; }
+.filtro { margin: 0; min-width: 10rem; }
+
+.tabla-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: .7rem .5rem; text-align: left; border-bottom: 1px solid var(--borde); }
+th { font-size: .85rem; font-weight: 500; color: var(--suave); }
+.num { text-align: right; white-space: nowrap; }
+.vacio { text-align: center; color: var(--suave); }
+
+/* Colores de ingresos y gastos */
+.positivo { color: var(--positivo); font-weight: 700; }
+.negativo { color: var(--negativo); font-weight: 700; }
+
+.borrar {
+  font: inherit;
+  font-size: .85rem;
+  color: var(--negativo);
+  background: none;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: .25rem .6rem;
+  cursor: pointer;
+}
+.borrar:hover { border-color: var(--negativo); }

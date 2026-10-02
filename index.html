@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MoneyTrack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Lienzo donde el JS dibuja las partículas del fondo -->
+  <canvas id="fondo" aria-hidden="true"></canvas>
+
+  <main class="app">
+
+    <!-- Cabecera: titular y saldo actual -->
+    <header class="cabecera">
+      <p class="titular">Cuenta de <span id="titular"></span></p>
+      <p class="saldo" id="saldo"></p>
+      <p class="resumen">
+        Ingresos <strong id="ingresos" class="positivo"></strong>
+        &nbsp;·&nbsp;
+        Gastos <strong id="gastos" class="negativo"></strong>
+      </p>
+    </header>
+
+    <div class="columnas">
+
+      <!-- Formulario para añadir movimientos -->
+      <section class="panel">
+        <h2>Nuevo movimiento</h2>
+        <form id="formulario" novalidate>
+          <label>Concepto
+            <input type="text" id="concepto" placeholder="Ej.: Supermercado" autocomplete="off">
+          </label>
+          <label>Importe (negativo para gastos)
+            <input type="number" id="importe" step="0.01" placeholder="-25.50">
+          </label>
+          <label>Categoría
+            <select id="categoria"></select>
+          </label>
+          <p id="error" class="error" role="alert"></p>
+          <button type="submit">Añadir movimiento</button>
+        </form>
+      </section>
+
+      <!-- Estadísticas de gasto -->
+      <section class="panel">
+        <h2>Estadísticas</h2>
+        <p>Total gastado: <strong id="total-gastado"></strong></p>
+        <p id="mayor" class="destacado"></p>
+        <ul id="lista-categorias"></ul>
+      </section>
+    </div>
+
+    <!-- Tabla de movimientos con filtro -->
+    <section class="panel">
+      <div class="barra-tabla">
+        <h2>Movimientos</h2>
+        <label class="filtro">Categoría
+          <select id="filtro"></select>
+        </label>
+      </div>
+      <div class="tabla-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Concepto</th>
+              <th>Categoría</th>
+              <th class="num">Importe</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="cuerpo-tabla"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
